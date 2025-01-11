@@ -1,1 +1,1 @@
-# Human-Expression : A website which express the inner feelings.
+# Human-Expression : A website which expresses the inner feelings.
