@@ -1,11 +1,40 @@
-function moveRandomEl(elm) {
-    elm.style.position = "absolute";
-    elm.style.top = Math.floor(Math.random() * 90 + 5) + "%";
-    elm.style.left = Math.floor(Math.random() * 90 + 5) + "%";
+const body = document.body
+const slides = document.querySelectorAll('.slide')
+const leftBtn = document.getElementById('left')
+const rightBtn = document.getElementById('right')
+
+let activeSlide = 0
+
+rightBtn.addEventListener('click', () => {
+  activeSlide++
+
+  if (activeSlide > slides.length - 1) {
+    activeSlide = 0
   }
-  
-  const moveRandom = document.querySelector("#move-random");
-  
-  moveRandom.addEventListener("mouseenter", function (e) {
-    moveRandomEl(e.target);
-  });
+
+  setBgToBody()
+  setActiveSlide()
+})
+
+leftBtn.addEventListener('click', () => {
+  activeSlide--
+
+  if (activeSlide < 0) {
+    activeSlide = slides.length - 1
+  }
+
+  setBgToBody()
+  setActiveSlide()
+})
+
+setBgToBody()
+
+function setBgToBody() {
+  body.style.backgroundImage = slides[activeSlide].style.backgroundImage
+}
+
+function setActiveSlide() {
+  slides.forEach((slide) => slide.classList.remove('active'))
+
+  slides[activeSlide].classList.add('active')
+}
